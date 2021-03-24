@@ -46,7 +46,7 @@ def next_number(num1):
     print(f"{operation} ", end='')
   operator = input(")\n  > ")
 
-  num2 = int(input("What is the next number?\n  > "))
+  num2 = float(input("What is the next number?\n  > "))
   calculate = operations[operator]
 
   answer = calculate(num1, num2)
@@ -54,7 +54,7 @@ def next_number(num1):
   return answer
 
 def calculator():
-  num1 = int(input("What is the first number?\n  > "))
+  num1 = float(input("What is the first number?\n  > "))
 
   answer = next_number(num1)
 
