@@ -32,6 +32,14 @@ def divide(number1, number2):
   """
   return number1 / number2
 
+def calculate(question):
+  print(question.split(' '))
+  parts = question.split(' ')
+  num1 = float(parts[0])
+  function = operations[parts[1]]
+  num2 = float(parts[2])
+  return function(num1, num2)
+
 operations = \
   {
     '+': add,
@@ -54,9 +62,10 @@ def next_number(num1):
   return answer
 
 def calculator():
-  num1 = float(input("What is the first number?\n  > "))
+  question = input("Input your calculation. e.g. 23 * 16\n  > ")
+  answer = calculate(question)
 
-  answer = next_number(num1)
+  print(f"{question} = {answer}")
 
   while True:
     user = input(
