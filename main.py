@@ -8,77 +8,78 @@ def main():
     print(logo)
     calculator()
 
-def add(number1, number2):
-  """
-  returns the sum of number1 and number2
-  """
-  return number1 + number2
 
-def subtract(number1, number2):
-  """
-  returns the difference between number1 and number2
-  """
-  return number1 - number2
+def add( number1, number2 ):
+    """
+    returns the sum of number1 and number2
+    """
+    return number1 + number2
 
-def multiply(number1, number2):
-  """
-  returns the product of number1 and number2
-  """
-  return number1 * number2
 
-def divide(number1, number2):
-  """
-  returns the ratio between number1 and number2
-  """
-  return number1 / number2
+def subtract( number1, number2 ):
+    """
+    returns the difference between number1 and number2
+    """
+    return number1 - number2
 
-def calculate(question):
-  print(question.split(' '))
-  parts = question.split(' ')
-  num1 = float(parts[0])
-  function = operations[parts[1]]
-  num2 = float(parts[2])
-  return function(num1, num2)
 
-operations = \
-  {
-    '+': add,
-    '-': subtract,
-    '*': multiply,
-    '/': divide
-  }
+def multiply( number1, number2 ):
+    """
+    returns the product of number1 and number2
+    """
+    return number1 * number2
 
-def next_number(num1):
-  print("Pick an operator ( ", end ='')
-  for operation in operations:
-    print(f"{operation} ", end='')
-  operator = input(")\n  > ")
 
-  num2 = float(input("What is the next number?\n  > "))
-  calculate = operations[operator]
+def divide( number1, number2 ):
+    """
+    returns the ratio between number1 and number2
+    """
+    return number1 / number2
 
-  answer = calculate(num1, num2)
-  print(f"{num1} {operator} {num2} = {answer}")
-  return answer
+
+def calculate( question ):
+    operations = \
+        {
+            '+': add,
+            '-': subtract,
+            '*': multiply,
+            '/': divide
+            }
+
+    parts = question.split(' ')
+    num1 = float(parts[0])
+    function = operations[parts[1]]
+    num2 = float(parts[2])
+    answer = str(function(num1, num2))
+    print(f"{question} = {answer}")
+
+    return answer
+
+
+def next_number( num1 ):
+    num2 = input("Input your calculation. e.g. + 32\n  > ")
+    return calculate(f"{num1} {num2}")
+
 
 def calculator():
-  question = input("Input your calculation. e.g. 23 * 16\n  > ")
-  answer = calculate(question)
+    question = input("Input your calculation. e.g. 23 * 16\n  > ")
+    answer = calculate(question)
 
-  print(f"{question} = {answer}")
+    while True:
+        user = input(
+            "press 'y' to continue calculating\n" \
+            "press 'n' for a new calculation\n" \
+            "or press 'q' to quit,\n  > ")
 
-  while True:
-    user = input(
-      "press 'y' to continue calculating\n" \
-      "press 'n' for a new calculation\n" \
-      "or press 'q' to quit,\n  > ")
+        if user == 'y':
+            num2 = input("Input your calculation. e.g. + 32\n  > ")
+            calculate(f"{answer} {num2}")
 
-    if user == 'y':
-      answer = next_number(answer)
-    elif user == 'n':
-      calculator()
-    else:
-      exit()
+        elif user == 'n':
+            calculator()
+        else:
+            exit()
+
 
 if __name__ == '__main__':
     main()
